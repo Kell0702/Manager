@@ -73,7 +73,9 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude></exclude>
+                        <exclude>manager.ru.netology.domain.Book</exclude>
+                        <exclude>manager.ru.netology.domain.Product</exclude>
+                        <exclude>manager.ru.netology.domain.TShirt</exclude>
                     </excludes>
                     <rules>
                         <rule>

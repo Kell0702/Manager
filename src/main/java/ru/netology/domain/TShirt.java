@@ -37,26 +37,26 @@ public class TShirt extends Product {
         this.size = size;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        TShirt shirt = (TShirt) o;
-        return Objects.equals(color, shirt.color) &&
-                Objects.equals(size, shirt.size);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), color, size);
-    }
-
-    @Override
-    public String toString() {
-        return "TShirt{" +
-                "color='" + color + '\'' +
-                ", size='" + size + '\'' +
-                '}';
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        if (!super.equals(o)) return false;
+//        TShirt shirt = (TShirt) o;
+//        return Objects.equals(color, shirt.color) &&
+//                Objects.equals(size, shirt.size);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(super.hashCode(), color, size);
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "TShirt{" +
+//                "color='" + color + '\'' +
+//                ", size='" + size + '\'' +
+//                '}';
+//    }
 }

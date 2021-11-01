@@ -66,6 +66,22 @@ class ProductRepositoryTest {
         assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void shouldFoundRemuveById() {
+        repository.save(book1);
+        repository.save(shirt1);
+        int id = 3;
+        try {
+            repository.removeById(id);
+        }catch (NotFoundException e){
+            System.out.println("Ошибка. Товара с таким ID-"+id+" не найдено.");
+        }
+
+        Product[] expected = new Product[]{book1};
+        Product[] actual = repository.findAll();
+        assertArrayEquals(expected, actual);
+    }
+
 //    @Test
 //    public void shouldFindById() {
 //        repository.save(book1);
