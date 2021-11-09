@@ -16,8 +16,11 @@ class ProductRepositoryTest {
     private TShirt shirt1 = new TShirt(3, "Чили", 50, "Черная", 50);
     private TShirt shirt2 = new TShirt(4, "Перец", 45, "Красная", 48);
 
+    private void assertThrows() {
+    }
+
     @Test
-    public void shouldSaveOneItem() {
+    public void shouldSaveOneItem() throws NotFoundException {
         repository.save(book1);
 
         Product[] expected = new Product[]{book1};
@@ -26,7 +29,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    public void shouldSaveTwoItems() {
+    public void shouldSaveTwoItems() throws NotFoundException {
         repository.save(book1);
         repository.save(shirt1);
 
@@ -36,13 +39,14 @@ class ProductRepositoryTest {
     }
 
     @Test
-    public void shouldRemuveById() {
+    public void shouldRemuveById() throws NotFoundException {
         repository.save(book1);
         repository.save(shirt1);
+        int id = 0;
         try {
             repository.removeById(shirt1.getId());
-        }catch (NotFoundException e){
-            System.out.println("Ошибка. Товара с таким ID не найдено.");
+        } catch (NotFoundException e) {
+            assertThrows();
         }
 
         Product[] expected = new Product[]{book1};
@@ -51,47 +55,36 @@ class ProductRepositoryTest {
     }
 
     @Test
-    public void shouldNotFoundRemuveById() {
+    public void shouldNotFoundRemuveById() throws NotFoundException {
         repository.save(book1);
         repository.save(shirt1);
         int id = 2;
         try {
             repository.removeById(id);
-        }catch (NotFoundException e){
-            System.out.println("Ошибка. Товара с таким ID-"+id+" не найдено.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            assertThrows();
         }
 
-        Product[] expected = new Product[]{book1,shirt1};
+        Product[] expected = new Product[]{book1, shirt1};
         Product[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldFoundRemuveById() {
+    public void shouldFoundRemuveById() throws NotFoundException {
         repository.save(book1);
         repository.save(shirt1);
         int id = 3;
         try {
             repository.removeById(id);
-        }catch (NotFoundException e){
-            System.out.println("Ошибка. Товара с таким ID-"+id+" не найдено.");
+        } catch (NotFoundException e) {
+            assertThrows();
         }
 
         Product[] expected = new Product[]{book1};
         Product[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
+
     }
 
-//    @Test
-//    public void shouldFindById() {
-//        repository.save(book1);
-//        repository.save(book2);
-//        repository.save(shirt1);
-//        repository.save(shirt2);
-//        repository.removeById(shirt1.getId());
-//
-//        Product[] expected = new Product[]{book1, book2, shirt2};
-//        Product[] actual = repository.findAll();
-//        assertArrayEquals(expected, actual);
-//    }
 }

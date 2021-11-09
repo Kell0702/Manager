@@ -5,6 +5,10 @@ import ru.netology.domain.Product;
 public class ProductRepository {
     private Product[] items = new Product[0];
 
+    private void assertThrows(int id) {
+        System.out.println("Ошибка. Товара с таким ID-" + id + " не найдено.");
+    }
+
     public void save(Product item) {
         int length = items.length + 1;
         Product[] tmp = new Product[length];
@@ -27,7 +31,7 @@ public class ProductRepository {
         return null;
     }
 
-    public void removeById(int id) throws NotFoundException  {
+    public void removeById(int id) throws NotFoundException {
         int length = items.length - 1;
         Product[] tmp = new Product[length];
         int index = 0;
@@ -37,7 +41,9 @@ public class ProductRepository {
                 index++;
             }
             if (findById(id) == null) {
-                throw new NotFoundException("Ошибка. Товара с таким ID-" + id + " не найдено.");
+//                throw new NotFoundException("Ошибка. Товара с таким ID-" + id + " не найдено.");
+
+                assertThrows(id);
             }
         }
         items = tmp;
